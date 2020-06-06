@@ -16,7 +16,8 @@ const	commentRoutes	= require("./routes/comments"),
 	  	assetRoutes		= require("./routes/assets"),
 	  	indexRoutes		= require("./routes/index");
 
-mongoose.connect("mongodb://localhost:27017/CMMS", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/CMMS", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://Marc:4YrzC-2Sehn@uXd@cmms-uxrri.mongodb.net/CMMS?retryWrites=true&w=majority", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"))
