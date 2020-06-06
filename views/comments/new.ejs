@@ -1,0 +1,29 @@
+<%- include ("../partials/header") %>
+
+<div class="container-fluid">
+	<div class="container">
+		<h1 class="text-center">
+			Add New Comment to <%= asset.fc %>
+		</h1>
+		<div style="width: 30%; margin: 0 auto;">
+			<form action="/assets/<%= asset._id %>/comments" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" name="comment[text]" placeholder="Comment">
+				</div>
+				<!-- <div class="form-group">
+					<input class="form-control" type="text"	name="comment[user]" placeholder="user">
+				</div> -->
+				<div class="form-group">
+					<button class="btn btn-lg btn-default btn-primary btn-block">
+						Submit
+					</button>
+				</div>
+				<a href="/assets">Go Back</a>
+			</form>
+		</div>
+
+	</div>
+</div>
+
+
+<%- include ("../partials/footer") %>

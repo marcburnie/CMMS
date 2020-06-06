@@ -1,0 +1,69 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">
+				CMMS
+			</p>
+			<div class="list-group">
+				<li class="list-group-item">Info 1</li>
+				<li class="list-group-item">Info 2</li>
+				<li class="list-group-item">Info 3</li>
+			</div>
+		</div>
+		<div class="col-md-9 card">
+			<img class="card-img-top" src= "<%= asset.img %>">
+			<div class="card-body">
+				<div class>
+					<h4>
+						$9.00
+					</h4>
+					<h4>
+						<a><%= asset.fc %></a>
+					</h4>
+					<p class="card-text">
+						<%= asset.description %>
+					</p>
+					<p>
+						<em>Submitted By: <%= asset.user.username %></em>
+					</p>
+					<% if (currentUser && asset.user.id.equals(currentUser._id)) {%>
+						<a class="btn btn-warning btn-sm" href="/assets/<%= asset._id %>/edit">Edit</a>
+						<form class="delete-form" action="/assets/<%= asset._id %>?_method=DELETE" method="POST">
+							<button class="btn btn-danger btn-sm">
+								Delete
+							</button>
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<div>
+				<div class="text-right">
+					<a class='btn btn-success' href='/assets/<%= asset._id %>/comments/new'>Add New Comment</a>
+				</div>
+				<% asset.comments.forEach( (comment) => { %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.user.username %></strong>
+							<span><%= comment.created %></span>
+							<p>
+								<%= comment.text %>
+							</p>
+
+							<% if (currentUser && comment.user.id.equals(currentUser._id)) {%>
+								<a class="btn btn-sm btn-warning" href="/assets/<%= asset._id %>/comments/<%= comment._id %>/edit">Edit</a>
+								<form class="delete-form" action="/assets/<%= asset._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+									<input type="submit" class="btn btn-sm btn-danger" value="Delete">
+								</form>
+							<% } %>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include ("../partials/footer") %>
+
