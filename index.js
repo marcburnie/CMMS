@@ -16,8 +16,14 @@ const	commentRoutes	= require("./routes/comments"),
 	  	assetRoutes		= require("./routes/assets"),
 	  	indexRoutes		= require("./routes/index");
 
+
+const url = process.env.DBURL || "mongodb://localhost:27017/CMMS"
+
+//Local database in Goorm
 // mongoose.connect("mongodb://localhost:27017/CMMS", {useNewUrlParser: true});
-mongoose.connect("mongodb+srv://Marc:test@cmms-uxrri.mongodb.net/CMMS?retryWrites=true&w=majority", {
+
+//Production database
+mongoose.connect(url, {
 	useNewUrlParser: true, 
 	useCreateIndex: true
 }).then( () => {
